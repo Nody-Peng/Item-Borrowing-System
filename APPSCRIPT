@@ -1,0 +1,58 @@
+function doPost(e) {
+    var formType = e.parameter.formType;
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+
+    if (formType === "loan") {
+        var barcodes = JSON.parse(e.parameter.barcodes);
+        var purpose = e.parameter.purpose; // 接收借用目的
+        var notes = e.parameter.notes || ''; // 接收備註，如果為undefined則設為空字符串
+        var dataRange = sheet.getDataRange();
+        var data = dataRange.getValues();
+        var notReturned = [];
+
+        barcodes.forEach(function(barcode) {
+            var isReturned = true;
+            for (var i = 1; i < data.length; i++) {
+                if (data[i][1].toString() === barcode && (data[i][7] === "" || data[i][7] === undefined)) {
+                    isReturned = false;
+                    notReturned.push(barcode);
+                    break;
+                }
+            }
+            if (isReturned) {
+                var newData = [new Date(), barcode, "", e.parameter.borrowerName, e.parameter.borrowerId, e.parameter.lenderName, e.parameter.loanTime, "", "", "", purpose, notes];
+                sheet.appendRow(newData);
+            }
+        });
+
+        if (notReturned.length > 0) {
+            return ContentService.createTextOutput("以下物品尚未歸還，無法借用: " + notReturned.join(", "));
+        } else {
+            return ContentService.createTextOutput("所有借用物品已提交成功!");
+        }
+    } else if (formType === "return") {
+        var barcodes = JSON.parse(e.parameter.returnBarcodes);
+        var checker = e.parameter.checkerName;
+        var returnTime = e.parameter.returnTime;
+        var dataRange = sheet.getDataRange();
+        var data = dataRange.getValues();
+        var found = false;
+
+        barcodes.forEach(function(barcode) {
+            for (var i = 1; i < data.length; i++) {
+                if (data[i][1].toString() === barcode && (data[i][7] === "" || data[i][7] === undefined)) {
+                    sheet.getRange(i + 1, 8).setValue("V");
+                    sheet.getRange(i + 1, 9).setValue(checker);
+                    sheet.getRange(i + 1, 10).setValue(returnTime); // 儲存歸還時間
+                    found = true;
+                }
+            }
+        });
+
+        if (found) {
+            return ContentService.createTextOutput("所有物品已成功標記為已還");
+        } else {
+            return ContentService.createTextOutput("找不到對應的條碼或物品已標記為已還");
+        }
+    }
+}

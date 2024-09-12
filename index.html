@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <title>物品借用系統</title>
+	<link
+	rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+	/>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- 物品借用表單 -->
+    <form
+      id="loanForm"
+      action="https://script.google.com/macros/s/AKfycbyJ4TPeoq2tzLiX12rO1VHfyy_zFlT_ZHHhbPvoUAElFiOB4WWYraLlbPdygWASN9E3/exec"
+      method="post"
+    >
+      <h2>物品借用表單</h2>
+      <input type="hidden" name="formType" value="loan" />
+      <label for="barcode">借用物品條碼（輸入後按Enter添加）:</label>
+      <input
+        type="text"
+        id="barcode"
+        name="barcode"
+        onkeypress="addBarcode(event)"
+        placeholder="輸入條碼並按Enter"
+      />
+      <div id="barcodeList"></div>
+      <!-- 用於顯示已輸入的條碼 -->
+
+      <label for="borrowerName">借用人姓名:</label>
+      <input type="text" id="borrowerName" name="borrowerName" required /><br />
+
+      <label for="borrowerId">借用人證號:</label>
+      <input type="text" id="borrowerId" name="borrowerId" required /><br />
+
+      <label for="purpose">借用目的:</label>
+      <input type="text" id="purpose" name="purpose" required /><br />
+
+      <label for="notes">備註:</label>
+      <textarea id="notes" name="notes"></textarea>
+
+      <label for="lenderName">出借人姓名:</label>
+      <select id="lenderName" name="lenderName" required>
+        <option value="">請選擇出借人</option>
+        <option value="梁澤民">梁澤民</option>
+        <option value="李靜如">李靜如</option>
+        <option value="邱奕瑄">邱奕瑄</option>
+        <option value="彭宗淳">彭宗淳</option>
+        <option value="黃玠雅">黃玠雅</option>
+        <option value="鄭家雯">鄭家雯</option>
+		<option value="蔡家勛">蔡家勛</option>
+        <option value="林佳瑢">林佳瑢</option>
+        <option value="王彥心">王彥心</option>
+        <option value="黃楚軍">黃楚軍</option>
+        <option value="彭柏恒">彭柏恒</option>
+		<option value="王祐禎">王祐禎</option>
+        <option value="吳妍靜">吳妍靜</option>
+		<option value="吳中竣">吳中竣</option></select
+      ><br />
+
+      <label for="loanTime">出借時間:</label>
+      <input
+        type="datetime-local"
+        id="loanTime"
+        name="loanTime"
+        required
+      /><br />
+      <button type="submit" class="ReturnButton">提交借用申請</button>
+    </form>
+
+    <!-- 物品歸還表單 -->
+    <form
+      id="returnForm"
+      action="https://script.google.com/macros/s/AKfycbyJ4TPeoq2tzLiX12rO1VHfyy_zFlT_ZHHhbPvoUAElFiOB4WWYraLlbPdygWASN9E3/exec"
+      method="post"
+    >
+      <h2>物品歸還表單</h2>
+      <input type="hidden" name="formType" value="return" />
+
+      <label for="returnBarcode">物品條碼（輸入後按Enter添加）:</label>
+      <input
+        type="text"
+        id="returnBarcode"
+        name="returnBarcode"
+        onkeypress="addReturnBarcode(event)"
+        placeholder="輸入條碼並按Enter"
+      />
+      <div id="returnBarcodeList"></div>
+      <!-- 用於顯示已輸入的條碼 -->
+
+      <label for="checkerName">檢查工讀生:</label>
+      <select id="checkerName" name="checkerName" required>
+		<option value="">請選擇檢查人</option>
+        <option value="梁澤民">梁澤民</option>
+        <option value="李靜如">李靜如</option>
+        <option value="邱奕瑄">邱奕瑄</option>
+        <option value="彭宗淳">彭宗淳</option>
+        <option value="黃玠雅">黃玠雅</option>
+        <option value="鄭家雯">鄭家雯</option>
+		<option value="蔡家勛">蔡家勛</option>
+        <option value="林佳瑢">林佳瑢</option>
+        <option value="王彥心">王彥心</option>
+        <option value="黃楚軍">黃楚軍</option>
+        <option value="彭柏恒">彭柏恒</option>
+		<option value="王祐禎">王祐禎</option>
+        <option value="吳妍靜">吳妍靜</option>
+		<option value="吳中竣">吳中竣</option></select
+      ><br />
+
+      <!-- 新增歸還時間輸入 -->
+      <label for="returnTime">歸還時間:</label>
+      <input
+        type="datetime-local"
+        id="returnTime"
+        name="returnTime"
+        required
+      /><br />
+
+      <button type="submit" class="ReturnButton">標記為已還</button>
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>

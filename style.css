@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 40px;
+}
+
+form {
+    width: 300px;
+    margin: auto; /* 水平居中 */
+    border: 1px solid #ccc;
+    padding: 20px;
+    box-shadow: 2px 2px 5px #888888;
+    background: #f9f9f9; /* 輕微的背景顏色 */
+}
+
+.ReturnButton {
+    width: 100%;
+    padding: 15px; /* 更厚的內邊距 */
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px; /* 添加圓角 */
+    cursor: pointer;
+    font-size: 16px; /* 較大的字體大小 */
+}
+
+.ReturnButton:hover {
+    background-color: #45a049;
+}
+
+input[type="text"], input[type="datetime-local"], select, textarea {
+    width: 95%;
+    padding: 8px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: none; /* 禁止調整大小 */
+    height: 100px; /* 固定高度 */
+}
+/* 條碼項的容器樣式 */
+.barcode-item {
+    display: flex; /* 使用 Flexbox 佈局 */
+    align-items: center; /* 垂直居中 */
+    justify-content: space-between; /* 兩端對齊 */
+    margin-bottom: 5px; /* 條碼項之間的間距 */
+    padding: 5px; /* 條碼項的內邊距 */
+    border: 1px solid #ccc; /* 條碼項的邊框 */
+    border-radius: 4px; /* 條碼項的圓角 */
+    background-color: #f9f9f9; /* 條碼項的背景顏色 */
+}
+
+.DeleteButton {
+    cursor: pointer;
+    background-color: #ff4d4d; /* 紅色背景 */
+    color: white;
+    border: none;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 10px; /* 保持距離 */
+}
+
+.DeleteButton:hover {
+    background-color: #e60000; /* 懸停效果 */
+}
+
+
