@@ -1,3 +1,9 @@
+/*
+Author: Nody Peng
+Email: ablecck12@gmail.com
+License: This code is free to use without authorization. Attribution would be appreciated.
+*/
+
 function doPost(e) {
     var formType = e.parameter.formType;
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();

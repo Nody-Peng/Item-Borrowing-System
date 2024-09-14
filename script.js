@@ -1,3 +1,8 @@
+/*
+Author: Nody Peng
+Email: ablecck12@gmail.com
+License: This code is free to use without authorization. Attribution would be appreciated.
+*/
 
 // 固定的商品條碼清單
 const allowedBarcodes = [
@@ -131,8 +136,8 @@ function addBarcode(event) {
 
     // 檢查條碼是否在允許的清單中
     if (!allowedBarcodes.includes(barcode)) {
-      alert("此條碼無效，請輸入有效的商品條碼！");
-	  //alert("你是白癡嗎?");
+      //alert("此條碼無效，請輸入有效的商品條碼！");
+	  alert("你是白癡嗎?");
       input.value = ""; // 清空輸入框
       return; // 中斷函數執行
     }
